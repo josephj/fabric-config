@@ -1,0 +1,3 @@
+.env
+patterns/*
+fabric_env
