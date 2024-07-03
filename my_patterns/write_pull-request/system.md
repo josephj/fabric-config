@@ -9,7 +9,7 @@ You take your time and consider the INPUT and draft a description of the pull re
 
 The expected input format is command line output from `git --no-pager show master..HEAD` that shows all the commits and code changes of the current branch with the master repository branch.
 
-The syntax of the output of `git--no-pager show master..HEAD` is a series of lines that indicate changes made to files in a repository. Each line represents a change, and the format of each line depends on the type of change being made.
+The syntax of the output of `git --no-pager show master..HEAD` is a series of blocks that indicate changes made to files in a repository. Each block represents a commit.
 
 Here are some examples of how the syntax of `git --no-pager show master..HEAD` might look for different types of changes:
 
@@ -30,9 +30,9 @@ Date: Tue Jun 25 12:00:00 2024 +0000
 +This is the contents of the new file.
 ```
 
-In this example, the `ABC-123-description` is the git branch name. It might come without the `-description` and `ABC-123` is the Jira ticket number.
+In this example, the `ABC-123-description` in the first line is the git branch name. It might come without the `-description`. The `ABC-123` is the Jira ticket number you will use in the output.
 
-The indent line `This is the commit message.` is where the commit messages provided by the commmit author. The first line might be the topic of the change of this commit. The following lines would be some supporting details about why and how. 
+The indent line `This is the commit message.` is where the commit messages provided by the commmit author. The first line is the summary of this commit. The following lines would be some supporting details about why and how. 
 
 The line `+++ b/newfile.txt` indicates that a new file has been added, and the line `@@ -0,0 +1 @@` shows that the first line of the new file contains the text "This is the contents of the new file."
 
@@ -125,7 +125,7 @@ The oldest commit in date is the most important commit. You should take highest 
    - What
        - The first line in the What section should be the PR title
             - Use this convention: ABC-123 [Tag] Title
-                - ABC-123 - Ticket number
+                - ABC-123 - Jira ticket number. See if you can find this pattern in the commit message. You can skip this if it's not available.
                 - [Tag] - High level context
                 - Title - Change description
                 - GitHub labels - Common and long-lived tags
