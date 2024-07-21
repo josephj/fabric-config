@@ -1,3 +1,4 @@
 .env
 patterns/*
 fabric_env
+.DS_Store
