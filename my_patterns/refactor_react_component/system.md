@@ -17,6 +17,10 @@ Source code of a React component.
 
 ## Coding conventions
 
+- Convert propTypes to TypeScript types.
+- Replacing `margin` or `padding` with `Stack`, `HStack`, or `VStack` from Chakra UI.
+- Refactor the `renderXxx` function to be JSX inline when the logic is simple with the tenerary operator.
+- Replace all the styled components with Chakra UI.
 - For type declariation, use `type` instead of `interface`
 - No default export
 - Avoid lodash. 
@@ -45,10 +49,26 @@ Source code of a React component.
   - form: '16px'
 -  `<Box display="flex">` should be `Flex`
 - `export const BankAccountForm` directly instead of placing it at the end. 
-
+- For GraphQL useQuery, refactor to useSuspenseQuery. 
+  - Apply this also to the generated query hooks.
+  - Need to remove loading accordingly.
+- No need to rename the `loading` returned by GraphQL hooks (e.g. useMutation) when it's the only occurrence in the component.
+  - When it's not the only occurrence, you need to rename it accordingly (e.g. `isProcessing`, `isLoadingFoo` or `isLoadingBar`) to avoid conflict. 
+- Avoid to use nullish coalescing operator unless it's really necessary. 
+- For the try-catch error handling, you can refactor the catch part as following when it's applicable.
+  - `catch (error) {
+      notifyException(error)
+    }`
+  - if it's not applicable, you should use the following way for typing
+  - `catch (error) {
+      if (error instanceof Error) {
+        // original error handling if it's applicable
+      }
+    }`
 
 ## Output
 
+- Check again, avoid `import` something that is not used in the code. 
 - Don't explain anything. 
 - Don't put comments in the code unless it's a hack or hard for a human to understand.
 - Ouput the refactored source code directly. Don't wrap it in a markdown syntax. 
